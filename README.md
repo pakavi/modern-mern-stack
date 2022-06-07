@@ -28,13 +28,13 @@ You need to add these to **.env** file
 Clone the project
 
 ```bash
-  https://github.com/pakavi/mern-stack-react-node.git
+  https://github.com/pakavi/modern-mern-stack.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd mern-stack-react-node
+  cd modern-mern-stack
 ```
 
 Install dependencies
@@ -51,7 +51,9 @@ Start the server
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](./preview/modern-mern-stack-login.png)
+![App Screenshot](./preview/modern-mern-stack-register.png)
+![App Screenshot](./preview/modern-mern-stack-error.png)
 
 ## Authors
 
