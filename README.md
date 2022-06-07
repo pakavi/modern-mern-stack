@@ -55,6 +55,11 @@ Start the server
 ![App Screenshot](./preview/modern-mern-stack-register.png)
 ![App Screenshot](./preview/modern-mern-stack-error.png)
 
+## License
+
+[MIT](https://github.com/pakavi/modern-mern-stack/blob/main/LICENSE.md)
+
+
 ## Authors
 
 [@pakavi](https://github.com/pakavi)
