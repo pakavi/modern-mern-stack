@@ -1,5 +1,9 @@
 import express from "express";
+import "express-async-errors";
+
 import dotenv from "dotenv";
+import morgan from "morgan";
+import helmet from "helmet";
 
 import connectDB from "./db/connectDB.js";
 
@@ -15,8 +19,8 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-
-app.get("/", (req, res) => res.send("Server is up"));
+app.use(morgan("dev"));
+app.use(helmet());
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs", jobsRouter);
@@ -31,8 +35,8 @@ const connect = async () => {
     await connectDB(process.env.MONGO_URL);
     app.listen(port, () => console.log(`Server is listening on port ${port}`));
   } catch (err) {
-    console.error(err);
+    console.error(err.message);
   }
-}
+};
 
 connect();
