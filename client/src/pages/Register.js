@@ -18,14 +18,8 @@ const Register = () => {
   const [values, setValues] = useState(initialState);
   const navigate = useNavigate();
 
-  const { 
-    user, 
-    isLoading, 
-    showAlert, 
-    displayAlert, 
-    registerUser, 
-    loginUser 
-  } = UseAppContext();
+  const { user, isLoading, showAlert, displayAlert, setupUser } =
+    UseAppContext();
 
   const toggleMember = () =>
     setValues({ ...values, isMember: !values.isMember });
@@ -45,9 +39,17 @@ const Register = () => {
     }
 
     if (isMember) {
-      loginUser(currentUser);
+      setupUser({
+        currentUser,
+        endpoint: "login",
+        alertText: "Login Successful",
+      });
     } else {
-      registerUser(currentUser);
+      setupUser({
+        currentUser,
+        endpoint: "register",
+        alertText: "User Created",
+      });
     }
   };
 
