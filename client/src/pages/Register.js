@@ -6,6 +6,7 @@ import { Logo, FormRow, Alert } from "../components/";
 
 import Wrapper from "../assets/wrappers/RegisterPage";
 
+
 const initialState = {
   name: "",
   email: "",
@@ -15,11 +16,17 @@ const initialState = {
 
 const Register = () => {
   const [values, setValues] = useState(initialState);
-  const { user, isLoading, showAlert, displayAlert, registerUser } = UseAppContext();
-
   const navigate = useNavigate();
 
-  
+  const { 
+    user, 
+    isLoading, 
+    showAlert, 
+    displayAlert, 
+    registerUser, 
+    loginUser 
+  } = UseAppContext();
+
   const toggleMember = () =>
     setValues({ ...values, isMember: !values.isMember });
 
@@ -38,7 +45,7 @@ const Register = () => {
     }
 
     if (isMember) {
-      console.log("User is already a member");
+      loginUser(currentUser);
     } else {
       registerUser(currentUser);
     }
