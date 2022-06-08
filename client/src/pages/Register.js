@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { UseAppContext } from "../context/appContext";
 import { Logo, FormRow, Alert } from "../components/";
 
 import Wrapper from "../assets/wrappers/RegisterPage";
-
 
 const initialState = {
   name: "",
@@ -15,10 +15,12 @@ const initialState = {
 
 const Register = () => {
   const [values, setValues] = useState(initialState);
-  const { isLoading, showAlert, displayAlert } = UseAppContext();
+  const { user, isLoading, showAlert, displayAlert, registerUser } = UseAppContext();
 
+  const navigate = useNavigate();
 
-  const toggleMember = () => 
+  
+  const toggleMember = () =>
     setValues({ ...values, isMember: !values.isMember });
 
   const handleChange = (e) =>
@@ -28,13 +30,23 @@ const Register = () => {
     e.preventDefault();
 
     const { name, email, password, isMember } = values;
-    
-    if(!email || !password || (!isMember && !name)) {
+    const currentUser = { name, email, password };
+
+    if (!email || !password || (!isMember && !name)) {
       displayAlert();
       return;
     }
-    console.log(values);
+
+    if (isMember) {
+      console.log("User is already a member");
+    } else {
+      registerUser(currentUser);
+    }
   };
+
+  useEffect(() => {
+    if (user) setTimeout(() => navigate("/"), 3000);
+  }, [user, navigate]);
 
   return (
     <Wrapper className="full-page">
@@ -63,7 +75,7 @@ const Register = () => {
           value={values.password}
           handleChange={handleChange}
         />
-        <button type="submit" className="btn btn-block">
+        <button type="submit" className="btn btn-block" disabled={isLoading}>
           Submit
         </button>
         <p>

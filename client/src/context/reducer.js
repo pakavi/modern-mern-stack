@@ -1,4 +1,10 @@
-import { CLEAR_ALERT, DISPLAY_ALERT } from "./actions";
+import {
+  CLEAR_ALERT,
+  DISPLAY_ALERT,
+  REGISTER_USER_BEGIN,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_ERROR,
+} from "./actions";
 
 
 const reducer = (state, action) => {
@@ -17,6 +23,36 @@ const reducer = (state, action) => {
       showAlert: false,
       alertType: "",
       alertText: "",
+    };
+  }
+
+  if (action.type === REGISTER_USER_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === REGISTER_USER_SUCCESS) {
+    const { token, user, location } = action.payload;
+
+    return {
+      ...state,
+      isLoading: false,
+      token,
+      user,
+      userLocation: location,
+      jobLocation: location,
+      showAlert: true,
+      alertType: "success",
+      alertText: "User Created",
+    };
+  }
+
+  if (action.type === REGISTER_USER_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: "danger",
+      alertText: action.payload.message,
     };
   }
 

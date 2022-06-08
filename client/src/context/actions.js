@@ -1,2 +1,6 @@
+export const REGISTER_USER_BEGIN = "REGISTER_USER";
+export const REGISTER_USER_SUCCESS = "SUCCESS";
+export const REGISTER_USER_ERROR = "ERROR";
+
 export const DISPLAY_ALERT = "SHOW_ALERT";
 export const CLEAR_ALERT = "CLEAR_ALERT";
