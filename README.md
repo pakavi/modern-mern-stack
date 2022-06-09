@@ -2,14 +2,17 @@
 
 Modern MERN stack with best practices and clean code
 
-## Features
+work in progress ☑️
 
+## Features
 - Custom error handling
-- Hashed password
+- Password hashing
+- CRUD operations
 - JSON web token
-- CRUD operation
 - Authentication
-- Middleware
+- Middlewares
+- Context API
+- Routing
 
 ## Environment Variables
 
@@ -51,6 +54,7 @@ Start the server
 
 ## Screenshots
 
+![App Screenshot](./preview/modern-mern-stack-landing.png)
 ![App Screenshot](./preview/modern-mern-stack-error.png)
 ![App Screenshot](./preview/modern-mern-stack-register.png)
 ![App Screenshot](./preview/modern-mern-stack-login.png)
