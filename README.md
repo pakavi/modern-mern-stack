@@ -2,6 +2,8 @@
 
 Modern MERN stack with best practices and clean code
 
+work in progress ☑️
+
 ## Features
 - Custom error handling
 - Hashed passwords
