@@ -6,8 +6,8 @@ work in progress ☑️
 
 ## Features
 - Custom error handling
-- CRUD operations
 - Password hashing
+- CRUD operations
 - JSON web token
 - Authentication
 - Middlewares
