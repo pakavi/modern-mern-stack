@@ -1,10 +1,10 @@
 import express from "express";
-import "express-async-errors";
-import cors from "cors";
-
 import dotenv from "dotenv";
 import morgan from "morgan";
 import helmet from "helmet";
+import cors from "cors";
+
+import "express-async-errors";
 
 import connectDB from "./db/connectDB.js";
 
@@ -14,10 +14,10 @@ import jobsRouter from "./routes/jobs.js";
 import notFound from "./middleware/notFound.js";
 import errorHandler from "./middleware/errorHandler.js";
 
+
 dotenv.config();
 
 const app = express();
-
 
 if (process.env.NODE_ENV !== "production") app.use(morgan("dev"));
 
