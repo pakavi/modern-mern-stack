@@ -3,13 +3,12 @@
 Modern MERN stack with best practices and clean code
 
 ## Features
-
 - Custom error handling
-- Hashed password
+- Hashed passwords
 - JSON web token
-- CRUD operation
+- CRUD operations
 - Authentication
-- Middleware
+- Middlewares
 
 ## Environment Variables
 
