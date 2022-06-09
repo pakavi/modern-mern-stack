@@ -6,11 +6,13 @@ work in progress ☑️
 
 ## Features
 - Custom error handling
-- Hashed passwords
-- JSON web token
 - CRUD operations
+- Password hashing
+- JSON web token
 - Authentication
 - Middlewares
+- Context API
+- Routing
 
 ## Environment Variables
 
