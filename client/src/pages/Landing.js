@@ -19,9 +19,9 @@ const Landing = () => {
             Job <span>Tracking</span> App
           </h1>
           <p>
-            I'm baby messenger bag helvetica meditation taxidermy pitchfork,
-            vegan synth. Stumptown gentrify next level coloring book pork belly
-            green juice.
+            Organic 8-bit freegan 90's banh mi listicle fixie health goth
+            microdosing DSA iceland man braid. Hot chicken cardigan austin,
+            chillwave asymmetrical jianbing.
           </p>
           <Link to="/register" className="btn btn-hero">
             Login/Register

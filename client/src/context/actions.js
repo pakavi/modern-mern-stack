@@ -4,3 +4,6 @@ export const SETUP_USER_ERROR = "LOGIN_ERROR";
 
 export const DISPLAY_ALERT = "SHOW_ALERT";
 export const CLEAR_ALERT = "CLEAR_ALERT";
+
+export const TOGGLE_SIDEBAR = "TOGGLE_SIDEBAR";
+export const LOGOUT_USER = "LOGOUT_USER";

@@ -1,15 +1,17 @@
 import React, { useReducer, useContext } from "react";
 import axios from "axios";
 
+import reducer from "./reducer";
+
 import {
   CLEAR_ALERT,
   DISPLAY_ALERT,
   SETUP_USER_BEGIN,
   SETUP_USER_SUCCESS,
-  SETUP_USER_ERROR
+  SETUP_USER_ERROR,
+  TOGGLE_SIDEBAR,
+  LOGOUT_USER,
 } from "./actions";
-
-import reducer from "./reducer";
 
 
 const user = localStorage.getItem("user");
@@ -25,6 +27,7 @@ const initialState = {
   token: token,
   userLocation: userLocation || "",
   jobLocation: userLocation || "",
+  showSidebar: false,
 };
 
 const AppContext = React.createContext();
@@ -40,23 +43,33 @@ const AppProvider = ({ children }) => {
   const clearAlert = () =>
     setTimeout(() => dispatch({ type: CLEAR_ALERT }), 3000);
 
+  const toggleSidebar = () => dispatch({ type: TOGGLE_SIDEBAR });
+
   const addUserToLocalStorage = ({ user, token, location }) => {
     localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", JSON.stringify(token));
-    localStorage.setItem("location", JSON.stringify(location));
+    localStorage.setItem("token", token);
+    localStorage.setItem("location", location);
   };
 
-  const removeUserFromLocalStorage = ({ user, token, location }) => {
-    localStorage.removeItem("user", JSON.stringify(user));
-    localStorage.removeItem("token", JSON.stringify(token));
-    localStorage.removeItem("location", JSON.stringify(location));
+  const removeUserFromLocalStorage = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("location");
+  };
+
+  const logoutUser = () => {
+    dispatch({ type: LOGOUT_USER });
+    removeUserFromLocalStorage();
   };
 
   const setupUser = async ({ currentUser, endpoint, alertText }) => {
     dispatch({ type: SETUP_USER_BEGIN });
 
     try {
-      const { data } = await axios.post(`/api/v1/auth/${endpoint}`, currentUser);
+      const { data } = await axios.post(
+        `/api/v1/auth/${endpoint}`,
+        currentUser
+      );
       const { user, token, location } = data;
 
       dispatch({
@@ -75,7 +88,13 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ ...state, displayAlert, setupUser }}
+      value={{
+        ...state,
+        displayAlert,
+        setupUser,
+        toggleSidebar,
+        logoutUser,
+      }}
     >
       {children}
     </AppContext.Provider>
