@@ -5,11 +5,11 @@ Modern MERN stack with best practices and clean code
 work in progress ☑️
 
 ## Features
-- Custom error handling
 - Password hashing
 - CRUD operations
 - JSON web token
 - Authentication
+- Error handling
 - Middlewares
 - Context
 - Routing
