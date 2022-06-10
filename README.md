@@ -11,7 +11,7 @@ work in progress ☑️
 - JSON web token
 - Authentication
 - Middlewares
-- Context API
+- Context
 - Routing
 
 ## Environment Variables
