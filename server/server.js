@@ -2,16 +2,16 @@ import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import helmet from "helmet";
-import cors from "cors";
 
+import cors from "cors";
 import "express-async-errors";
 
 import connectDB from "./db/connectDB.js";
-
 import authRouter from "./routes/auth.js";
 import jobsRouter from "./routes/jobs.js";
 
 import notFound from "./middleware/notFound.js";
+import authenticateUser from "./middleware/auth.js";
 import errorHandler from "./middleware/errorHandler.js";
 
 
@@ -26,7 +26,7 @@ app.use(helmet());
 app.use(cors());
 
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/jobs", jobsRouter);
+app.use("/api/v1/jobs", authenticateUser, jobsRouter);
 
 app.use(notFound);
 app.use(errorHandler);
