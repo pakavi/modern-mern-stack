@@ -11,15 +11,15 @@ const UserSchema = Schema({
   name: {
     type: String,
     required: [true, "Please provide name value"],
-    minLength: 3,
-    maxLength: 20,
+    minLength: [3, "Name has to be at least 3 characters"],
+    maxLength: [20, "Name has to be at most 20 characters"],
     trim: true,
   },
   lastName: {
     type: String,
     maxLength: 20,
     trim: true,
-    default: "Doe",
+    default: "Unknown",
   },
   email: {
     type: String,
@@ -33,14 +33,14 @@ const UserSchema = Schema({
   password: {
     type: String,
     required: [true, "Please provide password value"],
-    minLength: 6,
+    minLength: [8, "Password needs to be at least 8 characters"],
     select: false,
   },
   location: {
     type: String,
     maxLength: 20,
     trim: true,
-    default: "New York",
+    default: "Unknown",
   },
 });
 

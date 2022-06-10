@@ -16,11 +16,16 @@ const initialState = {
 
 const Register = () => {
   const [values, setValues] = useState(initialState);
-  
-  const navigate = useNavigate();
 
-  const { user, isLoading, showAlert, displayAlert, setupUser } =
-    UseAppContext();
+  const navigate = useNavigate();
+  
+  const { 
+    user, 
+    isLoading, 
+    showAlert, 
+    displayAlert, 
+    setupUser, 
+  } = UseAppContext();
 
   const toggleMember = () =>
     setValues({ ...values, isMember: !values.isMember });
@@ -33,7 +38,7 @@ const Register = () => {
 
     const { name, email, password, isMember } = values;
     const currentUser = { name, email, password };
-
+    
     if (!email || !password || (!isMember && !name)) {
       displayAlert();
       return;
