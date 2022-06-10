@@ -5,7 +5,6 @@ Modern MERN stack with best practices and clean code
 work in progress ☑️
 
 ## Features
-- Password hashing
 - CRUD operations
 - JSON web token
 - Authentication
