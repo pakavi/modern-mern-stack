@@ -1,6 +1,6 @@
 # Modern MERN Stack
 
-Modern MERN stack with best practices and clean code
+Modern MERN stack with best practices
 
 work in progress ☑️
 
