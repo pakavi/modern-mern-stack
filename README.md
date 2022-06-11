@@ -9,6 +9,7 @@ work in progress ☑️
 - JSON web token
 - Authentication
 - Error handling
+- Password hash
 - Middlewares
 - Context
 - Routing
@@ -53,10 +54,10 @@ Start the server
 
 ## Screenshots
 
-![App Screenshot](./preview/modern-mern-stack-error.png)
-![App Screenshot](./preview/modern-mern-stack-valid-email.png)
+![App Screenshot](./preview/modern-mern-stack-name-validation.png)
+![App Screenshot](./preview/modern-mern-stack-pass-validation.png)
+![App Screenshot](./preview/modern-mern-stack-email-validation.png)
 ![App Screenshot](./preview/modern-mern-stack-register.png)
-![App Screenshot](./preview/modern-mern-stack-invalid-credentials.png)
 ![App Screenshot](./preview/modern-mern-stack-login.png)
 
 ## License
