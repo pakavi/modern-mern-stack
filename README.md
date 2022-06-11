@@ -9,6 +9,7 @@ work in progress ☑️
 - JSON web token
 - Authentication
 - Error handling
+- Password hash
 - Middlewares
 - Context
 - Routing
