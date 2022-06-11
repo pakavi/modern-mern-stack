@@ -4,6 +4,14 @@ import axios from "axios";
 import reducer from "./reducer";
 
 import {
+  user,
+  token,
+  userLocation,
+  addUserToLocalStorage,
+  removeUserFromLocalStorage,
+} from "./constants";
+
+import {
   CLEAR_ALERT,
   DISPLAY_ALERT,
   SETUP_USER_BEGIN,
@@ -13,10 +21,6 @@ import {
   LOGOUT_USER,
 } from "./actions";
 
-
-const user = localStorage.getItem("user");
-const token = localStorage.getItem("token");
-const userLocation = localStorage.getItem("location");
 
 const initialState = {
   loading: false,
@@ -35,18 +39,6 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const addUserToLocalStorage = ({ user, token, location }) => {
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", token);
-    localStorage.setItem("location", location);
-  };
-
-  const removeUserFromLocalStorage = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    localStorage.removeItem("location");
-  };
-
   const displayAlert = () => {
     dispatch({ type: DISPLAY_ALERT });
     clearAlert();
@@ -55,11 +47,16 @@ const AppProvider = ({ children }) => {
   const clearAlert = () =>
     setTimeout(() => dispatch({ type: CLEAR_ALERT }), 3000);
 
+  const toggleSidebar = () => dispatch({ type: TOGGLE_SIDEBAR });
+
   const setupUser = async ({ currentUser, endpoint, alertText }) => {
     dispatch({ type: SETUP_USER_BEGIN });
 
     try {
-      const { data } = await axios.post(`/api/v1/auth/${endpoint}`, currentUser);
+      const { data } = await axios.post(
+        `/api/v1/auth/${endpoint}`,
+        currentUser
+      );
       const { user, token, location } = data;
 
       dispatch({
@@ -76,12 +73,14 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
+  const updateUser = (currentUser) => {
+    console.log(currentUser);
+  };
+
   const logoutUser = () => {
     dispatch({ type: LOGOUT_USER });
     removeUserFromLocalStorage();
   };
-
-  const toggleSidebar = () => dispatch({ type: TOGGLE_SIDEBAR });
 
   return (
     <AppContext.Provider
@@ -89,9 +88,11 @@ const AppProvider = ({ children }) => {
         ...state,
         displayAlert,
         setupUser,
-        toggleSidebar,
+        updateUser,
         logoutUser,
-      }}>
+        toggleSidebar,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
