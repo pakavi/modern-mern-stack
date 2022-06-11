@@ -34,7 +34,7 @@ const login = async (req, res) => {
 
   if (!email || !password)
     throw new BadRequestError("Please provide all values");
-  
+
   const user = await User.findOne({ email }).select("+password");
   if (!user) 
     throw new UnauthenticatedError("Invalid credentials");
@@ -50,7 +50,22 @@ const login = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  res.send("Update user");
+  const { name, email, lastName, location } = req.body;
+
+  if (!name || !email || !lastName || !location)
+    throw new BadRequestError("Please provide all values");
+
+  const user = await User.findOne({ _id: req.user.userId });
+  const token = user.createJWT();
+
+  user.email = email;
+  user.name = name;
+  user.lastName = lastName;
+  user.location = location;
+
+  await user.save();
+
+  res.status(StatusCodes.OK).json({ user, token, location: user.location });
 };
 
 export { register, login, updateUser };
