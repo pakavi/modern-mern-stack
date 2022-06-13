@@ -53,12 +53,11 @@ Start the server
 ```
 
 ## Screenshots
-
-![App Screenshot](./preview/modern-mern-stack-name-validation.png)
 ![App Screenshot](./preview/modern-mern-stack-pass-validation.png)
 ![App Screenshot](./preview/modern-mern-stack-email-validation.png)
 ![App Screenshot](./preview/modern-mern-stack-register.png)
 ![App Screenshot](./preview/modern-mern-stack-login.png)
+![App Screenshot](./preview/modern-mern-stack-update-profile.png)
 
 ## License
 
