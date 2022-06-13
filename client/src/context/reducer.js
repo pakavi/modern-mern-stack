@@ -6,6 +6,9 @@ import {
   SETUP_USER_BEGIN,
   SETUP_USER_SUCCESS,
   SETUP_USER_ERROR,
+  UPDATE_USER_BEGIN,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
   TOGGLE_SIDEBAR,
   LOGOUT_USER,
 } from "./actions";
@@ -51,6 +54,34 @@ const reducer = (state, action) => {
   }
 
   if (action.type === SETUP_USER_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: "danger",
+      alertText: action.payload.msg,
+    };
+  }
+
+  if (action.type === UPDATE_USER_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === UPDATE_USER_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      token: action.payload.token,
+      user: action.payload.user,
+      userLocation: action.payload.location,
+      jobLocation: action.payload.location,
+      showAlert: true,
+      alertType: "success",
+      alertText: "User Updated",
+    };
+  }
+
+  if (action.type === UPDATE_USER_ERROR) {
     return {
       ...state,
       isLoading: false,
