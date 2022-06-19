@@ -4,10 +4,8 @@ work in progress ☑️
 
 ## Features
 - CRUD operations
-- JSON web token
 - Authentication
 - Error handling
-- Password hash
 - Middlewares
 - Context
 - Routing
@@ -56,6 +54,7 @@ Start the server
 ![App Screenshot](./preview/modern-mern-stack-register.png)
 ![App Screenshot](./preview/modern-mern-stack-login.png)
 ![App Screenshot](./preview/modern-mern-stack-update-profile.png)
+![App Screenshot](./preview/modern-mern-stack-add-job.png)
 ![App Screenshot](./preview/modern-mern-stack-404-page.png)
 
 ## License
