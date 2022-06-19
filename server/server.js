@@ -14,8 +14,8 @@ import errorHandler from "./middleware/errorHandler.js";
 import authenticateUser from "./middleware/auth.js";
 import notFound from "./middleware/notFound.js";
 
-dotenv.config();
 
+dotenv.config();
 
 const app = express();
 
@@ -30,6 +30,7 @@ app.use("/api/v1/jobs", authenticateUser, jobsRouter);
 
 app.use(notFound);
 app.use(errorHandler);
+
 
 const connect = async () => {
   const url = process.env.MONGO_URL;
