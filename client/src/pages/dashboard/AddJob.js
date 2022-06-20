@@ -34,7 +34,7 @@ const AddJob = () => {
     e.preventDefault();
 
     if (!position || !company || !jobLocation) {
-      displayAlert("");
+      displayAlert();
       return;
     }
     if(isEditing) return;

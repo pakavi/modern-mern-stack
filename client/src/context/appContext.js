@@ -25,6 +25,8 @@ import {
   LOGOUT_USER,
   HANDLE_CHANGE,
   CLEAR_VALUES,
+  GET_JOBS_BEGIN,
+  GET_JOBS_SUCCESS,
 } from "./actions";
 
 
@@ -55,6 +57,7 @@ const AppProvider = ({ children }) => {
     }
   );
 
+
   const displayAlert = () => {
     dispatch({ type: DISPLAY_ALERT });
     clearAlert();
@@ -63,12 +66,13 @@ const AppProvider = ({ children }) => {
   const clearAlert = () =>
     setTimeout(() => dispatch({ type: CLEAR_ALERT }), 3000);
 
-  const toggleSidebar = () => dispatch({ type: TOGGLE_SIDEBAR });
-
   const handleChange = ({ name, value }) =>
     dispatch({ type: HANDLE_CHANGE, payload: { name, value } });
-
+  
   const clearValues = () => dispatch({ type: CLEAR_VALUES });
+  
+  const toggleSidebar = () => dispatch({ type: TOGGLE_SIDEBAR });
+
 
   const setupUser = async ({ currentUser, endpoint, alertText }) => {
     dispatch({ type: SETUP_USER_BEGIN });
@@ -122,6 +126,27 @@ const AppProvider = ({ children }) => {
     removeUserFromLocalStorage();
   };
 
+
+  const getJobs = async () => {
+    let url = `/jobs`;
+
+    dispatch({ type: GET_JOBS_BEGIN });
+
+    try {
+      const { data } = await authFetch(url);
+      const { jobs, totalJobs, numOfPages } = data;
+
+      dispatch({
+        type: GET_JOBS_SUCCESS,
+        payload: { jobs, totalJobs, numOfPages },
+      });
+    } catch (err) {
+      console.error(err.response);
+      logoutUser();
+    }
+    clearAlert();
+  };
+
   const createJob = async () => {
     dispatch({ type: CREATE_JOB_BEGIN });
 
@@ -147,6 +172,10 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
+  const setEditJob = (id) => console.log(`Set edit job: ${id}`);
+
+  const deleteJob = (id) => console.log(`Delete job: ${id}`);
+
   return (
     <AppContext.Provider
       value={{
@@ -158,7 +187,10 @@ const AppProvider = ({ children }) => {
         toggleSidebar,
         handleChange,
         clearValues,
+        getJobs,
         createJob,
+        setEditJob,
+        deleteJob,
       }}
     >
       {children}
