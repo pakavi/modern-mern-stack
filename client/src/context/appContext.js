@@ -27,8 +27,12 @@ import {
   CLEAR_VALUES,
   GET_JOBS_BEGIN,
   GET_JOBS_SUCCESS,
+  SET_EDIT_JOB,
+  DELETE_JOB_BEGIN,
+  EDIT_JOB_BEGIN,
+  EDIT_JOB_SUCCESS,
+  EDIT_JOB_ERROR,
 } from "./actions";
-
 
 const AppContext = React.createContext();
 
@@ -68,9 +72,9 @@ const AppProvider = ({ children }) => {
 
   const handleChange = ({ name, value }) =>
     dispatch({ type: HANDLE_CHANGE, payload: { name, value } });
-  
+
   const clearValues = () => dispatch({ type: CLEAR_VALUES });
-  
+
   const toggleSidebar = () => dispatch({ type: TOGGLE_SIDEBAR });
 
 
@@ -172,9 +176,43 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
-  const setEditJob = (id) => console.log(`Set edit job: ${id}`);
+  const setEditJob = (id) => dispatch({ type: SET_EDIT_JOB, payload: { id } });
 
-  const deleteJob = (id) => console.log(`Delete job: ${id}`);
+  const editJob = async () => {
+    dispatch({ type: EDIT_JOB_BEGIN });
+
+    try {
+      const { position, company, jobLocation, jobType, status } = state;
+
+      await authFetch.patch(`/jobs/${state.editJobId}`, {
+        company,
+        position,
+        jobLocation,
+        jobType,
+        status,
+      });
+      dispatch({ type: EDIT_JOB_SUCCESS });
+      dispatch({ type: CLEAR_VALUES });
+    } catch (err) {
+      if (err.response.status === 401) return;
+      dispatch({
+        type: EDIT_JOB_ERROR,
+        payload: { msg: err.response.data.msg },
+      });
+    }
+    clearAlert();
+  };
+
+  const deleteJob = async (jobId) => {
+    dispatch({ type: DELETE_JOB_BEGIN });
+
+    try {
+      await authFetch.delete(`/jobs/${jobId}`);
+      getJobs();
+    } catch (err) {
+      logoutUser();
+    }
+  };
 
   return (
     <AppContext.Provider
@@ -191,6 +229,7 @@ const AppProvider = ({ children }) => {
         createJob,
         setEditJob,
         deleteJob,
+        editJob,
       }}
     >
       {children}
