@@ -7,6 +7,7 @@ work in progress ☑️
 - Authentication
 - Error handling
 - Middlewares
+- Permissions
 - Context
 - Routing
 
