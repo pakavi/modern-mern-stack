@@ -10,6 +10,7 @@ work in progress ☑️
 - Permissions
 - Context
 - Routing
+- JWT
 
 ## Environment Variables
 
