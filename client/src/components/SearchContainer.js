@@ -2,7 +2,7 @@ import React from "react";
 
 
 const SearchContainer = () => {
-  return <div>SearchContainer</div>;
+  return <div></div>;
 };
 
 export default SearchContainer;

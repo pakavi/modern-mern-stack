@@ -23,6 +23,8 @@ import {
   EDIT_JOB_BEGIN,
   EDIT_JOB_SUCCESS,
   EDIT_JOB_ERROR,
+  SHOW_STATS_BEGIN,
+  SHOW_STATS_SUCCESS,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -43,6 +45,24 @@ const reducer = (state, action) => {
       alertText: "",
     };
   }
+
+  if(action.type === SHOW_STATS_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+      showAlert: false,
+    }
+  }
+
+  if(action.type === SHOW_STATS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      stats: action.payload.stats,
+      monthlyApplications: action.payload.monthlyApplications,
+    }
+  }
+  
 
   if (action.type === SETUP_USER_BEGIN) {
     return { ...state, isLoading: true };

@@ -32,7 +32,10 @@ import {
   EDIT_JOB_BEGIN,
   EDIT_JOB_SUCCESS,
   EDIT_JOB_ERROR,
+  SHOW_STATS_BEGIN,
+  SHOW_STATS_SUCCESS,
 } from "./actions";
+
 
 const AppContext = React.createContext();
 
@@ -60,7 +63,6 @@ const AppProvider = ({ children }) => {
       return Promise.reject(err);
     }
   );
-
 
   const displayAlert = () => {
     dispatch({ type: DISPLAY_ALERT });
@@ -130,7 +132,6 @@ const AppProvider = ({ children }) => {
     removeUserFromLocalStorage();
   };
 
-
   const getJobs = async () => {
     let url = `/jobs`;
 
@@ -151,6 +152,7 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
+  
   const createJob = async () => {
     dispatch({ type: CREATE_JOB_BEGIN });
 
@@ -214,6 +216,25 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const showStats = async () => {
+    dispatch({ type: SHOW_STATS_BEGIN });
+
+    try {
+      const { data } = await authFetch("/jobs/stats");
+      dispatch({
+        type: SHOW_STATS_SUCCESS,
+        payload: {
+          stats: data.defaultStats,
+          monthlyApplications: data.monthlyApplications,
+        },
+      });
+    } catch (err) {
+      console.error(err);
+      logoutUser();
+    }
+    clearAlert();
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -230,6 +251,7 @@ const AppProvider = ({ children }) => {
         setEditJob,
         deleteJob,
         editJob,
+        showStats,
       }}
     >
       {children}
