@@ -11,7 +11,7 @@ import JobInfo from "./JobInfo";
 
 
 const Job = ({
-  _id: id,
+  _id,
   position,
   company,
   jobLocation,
@@ -45,14 +45,14 @@ const Job = ({
             <Link
               to="/add-job"
               className="btn edit-btn"
-              onClick={() => setEditJob(id)}
+              onClick={() => setEditJob(_id)}
             >
               Edit
             </Link>
             <button
               type="button"
               className="btn delete-btn"
-              onClick={() => deleteJob(id)}
+              onClick={() => deleteJob(_id)}
             >
               Delete
             </button>

@@ -9,10 +9,27 @@ import { BadRequestError, NotFoundError } from "../errors/index.js";
 
 
 const getAllJobs = async (req, res) => {
-  const jobs = await Job.find({ createdBy: req.user.userId });
-  res
-    .status(StatusCodes.OK)
-    .json({ jobs, totalJobs: jobs.length, numOfPages: 1 });
+  const { search, status, jobType, sort } = req.query;
+
+  const queryObject = { createdBy: req.user.userId };
+
+  if(status !== "all") queryObject.status = status;
+  if(status !== "all") queryObject.jobType = jobType;
+
+  if(sort === "latest") result = result.sort("-createdAt");
+  if(sort === "oldest") result = result.sort("createdAt");
+
+  if(sort === "a-z") result = result.sort("position");
+  if(sort === "z-a") result = result.sort("-position");
+  
+  if(search) {
+    queryObject.position = { $regex: search, $options: "i" };
+  }
+  
+  let result = Job.find(queryObject);
+
+  const jobs = await result;
+  res.status(StatusCodes.OK).json({ jobs, totalJobs: jobs.length, numOfPages: 1 });
 };
 
 const createJob = async (req, res) => {
@@ -23,7 +40,7 @@ const createJob = async (req, res) => {
 
   req.body.createdBy = req.user.userId;
 
-  const job = Job.create(req.body);
+  const job = await Job.create(req.body);
   res.status(StatusCodes.CREATED).json({ job });
 };
 
@@ -57,7 +74,6 @@ const deleteJob = async (req, res) => {
   await job.remove();
   res.status(StatusCodes.OK).json({ msg: "Job deleted" });
 };
-
 
 const showStats = async (req, res) => {
   let stats = await Job.aggregate([
@@ -94,13 +110,19 @@ const showStats = async (req, res) => {
 
   monthlyApplications = monthlyApplications
     .map((item) => {
-      const { _id: { year, month }, count } = item;
-      const date = moment().month(month - 1).year(year - 1).format("MMM Y");
+      const {
+        _id: { year, month },
+        count,
+      } = item;
+      const date = moment()
+        .month(month - 1)
+        .year(year - 1)
+        .format("MMM Y");
       return { date, count };
-    }).reverse();
+    })
+    .reverse();
 
   res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
 };
 
 export { getAllJobs, createJob, updateJob, deleteJob, showStats };
- 

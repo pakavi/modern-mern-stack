@@ -26,6 +26,8 @@ const initialState = {
   page: 1,
   stats: {},
   monthlyApplications: [],
+  searchStatus: "all",
+  searchType: "all"
 };
 
 const addUserToLocalStorage = ({ user, token, location }) => {

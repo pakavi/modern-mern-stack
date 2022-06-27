@@ -133,7 +133,9 @@ const AppProvider = ({ children }) => {
   };
 
   const getJobs = async () => {
-    let url = `/jobs`;
+    const { page, search, searchStatus, searchType } = state;
+
+    let url = `/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}`;
 
     dispatch({ type: GET_JOBS_BEGIN });
 
