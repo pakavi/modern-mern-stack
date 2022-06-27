@@ -51,13 +51,11 @@ Start the server
 ```
 
 ## Screenshots
-![App Screenshot](./preview/modern-mern-stack-pass-validation.png)
-![App Screenshot](./preview/modern-mern-stack-email-validation.png)
-![App Screenshot](./preview/modern-mern-stack-register.png)
-![App Screenshot](./preview/modern-mern-stack-login.png)
-![App Screenshot](./preview/modern-mern-stack-update-profile.png)
-![App Screenshot](./preview/modern-mern-stack-job-add.png)
-![App Screenshot](./preview/modern-mern-stack-404-page.png)
+![App Screenshot](./preview/modern-mern-stack-landing-page.png)
+![App Screenshot](./preview/modern-mern-stack-profile.png)
+![App Screenshot](./preview/modern-mern-stack-add-job.png)
+![App Screenshot](./preview/modern-mern-stack-all-jobs.png)
+![App Screenshot](./preview/modern-mern-stats.png)
 
 ## License
 
