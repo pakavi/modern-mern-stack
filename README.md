@@ -29,7 +29,7 @@ You need to add these to **.env** file
 Clone the project
 
 ```bash
-  https://github.com/pakavi/modern-mern-stack.git
+  git clone https://github.com/pakavi/modern-mern-stack.git
 ```
 
 Go to the project directory
