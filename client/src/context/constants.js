@@ -27,7 +27,10 @@ const initialState = {
   stats: {},
   monthlyApplications: [],
   searchStatus: "all",
-  searchType: "all"
+  searchType: "all",
+  search: "",
+  sort: "latest",
+  sortOptions: ["latest", "oldest", "a-z", "z-a"]
 };
 
 const addUserToLocalStorage = ({ user, token, location }) => {

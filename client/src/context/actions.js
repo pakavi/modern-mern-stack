@@ -28,6 +28,7 @@ export const LOGOUT_USER = "LOGOUT_USER";
 
 export const HANDLE_CHANGE = "HANDLE_CHANGE";
 export const CLEAR_VALUES = "CLEAR_VALUES";
+export const CLEAR_FILTERS = "CLEAR_FILTERS";
 
 export const SHOW_STATS_BEGIN = "SHOW_STATS_BEGIN";
 export const SHOW_STATS_SUCCESS = "SHOW_STATS_SUCCESS";

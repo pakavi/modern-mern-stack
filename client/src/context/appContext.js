@@ -34,6 +34,7 @@ import {
   EDIT_JOB_ERROR,
   SHOW_STATS_BEGIN,
   SHOW_STATS_SUCCESS,
+  CLEAR_FILTERS,
 } from "./actions";
 
 
@@ -76,6 +77,8 @@ const AppProvider = ({ children }) => {
     dispatch({ type: HANDLE_CHANGE, payload: { name, value } });
 
   const clearValues = () => dispatch({ type: CLEAR_VALUES });
+
+  const clearFilters = () => dispatch({ type:  CLEAR_FILTERS });
 
   const toggleSidebar = () => dispatch({ type: TOGGLE_SIDEBAR });
 
@@ -133,9 +136,13 @@ const AppProvider = ({ children }) => {
   };
 
   const getJobs = async () => {
-    const { page, search, searchStatus, searchType } = state;
+    const { page, search, searchStatus, searchType, sort } = state;
 
-    let url = `/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}`;
+    let url = `/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort=${sort}`;
+
+    if(search) {
+      url = url + `&search=${search}`;
+    }
 
     dispatch({ type: GET_JOBS_BEGIN });
 
@@ -254,6 +261,7 @@ const AppProvider = ({ children }) => {
         deleteJob,
         editJob,
         showStats,
+        clearFilters,
       }}
     >
       {children}
