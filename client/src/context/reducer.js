@@ -26,7 +26,9 @@ import {
   SHOW_STATS_BEGIN,
   SHOW_STATS_SUCCESS,
   CLEAR_FILTERS,
+  CHANGE_PAGE,
 } from "./actions";
+
 
 const reducer = (state, action) => {
   if (action.type === DISPLAY_ALERT) {
@@ -249,6 +251,7 @@ const reducer = (state, action) => {
   if (action.type === HANDLE_CHANGE) {
     return {
       ...state,
+      page: 1,
       [action.payload.name]: action.payload.value,
     };
   }
@@ -268,6 +271,13 @@ const reducer = (state, action) => {
       ...state,
       ...initialState,
     };
+  }
+
+  if(action.type === CHANGE_PAGE) {
+    return {
+      ...state,
+      page: action.payload.page,
+    }
   }
 
   throw new Error(`No such action: ${action.type}`);

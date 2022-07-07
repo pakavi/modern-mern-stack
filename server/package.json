@@ -4,10 +4,16 @@
   "description": "MERN stack",
   "main": "server.js",
   "type": "module",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "server": "nodemon server --ignore client",
     "client": "npm start --prefix ../client",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "build-client": "cd ../client && npm run build",
+    "install-client": "cd ../client && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build-client"
   },
   "keywords": [],
   "author": "",
@@ -18,13 +24,16 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^6.4.0",
     "helmet": "^5.1.0",
     "http-status-codes": "^2.2.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.3",
     "mongoose": "^6.3.5",
     "morgan": "^1.10.0",
-    "validator": "^13.7.0"
+    "validator": "^13.7.0",
+    "xss-clean": "^0.1.1"
   },
   "devDependencies": {
     "concurrently": "^7.2.1",

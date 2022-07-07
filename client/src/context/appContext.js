@@ -35,6 +35,7 @@ import {
   SHOW_STATS_BEGIN,
   SHOW_STATS_SUCCESS,
   CLEAR_FILTERS,
+  CHANGE_PAGE,
 } from "./actions";
 
 
@@ -76,9 +77,12 @@ const AppProvider = ({ children }) => {
   const handleChange = ({ name, value }) =>
     dispatch({ type: HANDLE_CHANGE, payload: { name, value } });
 
+  const changePage = (page) =>
+    dispatch({ type: CHANGE_PAGE, payload: { page } });
+
   const clearValues = () => dispatch({ type: CLEAR_VALUES });
 
-  const clearFilters = () => dispatch({ type:  CLEAR_FILTERS });
+  const clearFilters = () => dispatch({ type: CLEAR_FILTERS });
 
   const toggleSidebar = () => dispatch({ type: TOGGLE_SIDEBAR });
 
@@ -140,7 +144,7 @@ const AppProvider = ({ children }) => {
 
     let url = `/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort=${sort}`;
 
-    if(search) {
+    if (search) {
       url = url + `&search=${search}`;
     }
 
@@ -155,13 +159,11 @@ const AppProvider = ({ children }) => {
         payload: { jobs, totalJobs, numOfPages },
       });
     } catch (err) {
-      console.error(err.response);
       logoutUser();
     }
     clearAlert();
   };
 
-  
   const createJob = async () => {
     dispatch({ type: CREATE_JOB_BEGIN });
 
@@ -238,7 +240,6 @@ const AppProvider = ({ children }) => {
         },
       });
     } catch (err) {
-      console.error(err);
       logoutUser();
     }
     clearAlert();
@@ -262,6 +263,7 @@ const AppProvider = ({ children }) => {
         editJob,
         showStats,
         clearFilters,
+        changePage,
       }}
     >
       {children}

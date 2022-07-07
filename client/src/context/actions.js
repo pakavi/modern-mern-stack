@@ -25,6 +25,7 @@ export const CLEAR_ALERT = "CLEAR_ALERT";
 
 export const TOGGLE_SIDEBAR = "TOGGLE_SIDEBAR";
 export const LOGOUT_USER = "LOGOUT_USER";
+export const CHANGE_PAGE = "CHANGE_PAGE";
 
 export const HANDLE_CHANGE = "HANDLE_CHANGE";
 export const CLEAR_VALUES = "CLEAR_VALUES";
