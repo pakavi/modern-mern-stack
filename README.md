@@ -55,6 +55,7 @@ Start the server
 ![App Screenshot](./preview/modern-mern-stack-profile.png)
 ![App Screenshot](./preview/modern-mern-stack-add-job.png)
 ![App Screenshot](./preview/modern-mern-stack-jobs-with-search.png)
+![App Screenshot](./preview/modern-mern-stack-jobs-pagination.png)
 ![App Screenshot](./preview/modern-mern-stack-stats.png)
 
 ## License
