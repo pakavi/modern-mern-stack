@@ -1,6 +1,6 @@
 # Modern MERN Stack
 
-work in progress ☑️
+Deploy ready ✅
 
 ## Features
 - CRUD operations
