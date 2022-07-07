@@ -9,7 +9,7 @@ const Wrapper = styled.section`
   flex-wrap: wrap;
   gap: 1rem;
   .btn-container {
-    background: var(--primary-100);
+    /* background: var(--primary-100); */
     border-radius: var(--borderRadius);
   }
   .pageBtn {

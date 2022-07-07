@@ -14,7 +14,7 @@ const PageBtnContainer = () => {
   const prevPage = () => {
     let newPage = page - 1;
     if(newPage < 1) {
-      newPage = numOfPages;
+      newPage = 1;
     };
     changePage(newPage);
   };
@@ -22,7 +22,7 @@ const PageBtnContainer = () => {
   const nextPage = () => {
     let newPage = page + 1;
     if(newPage > numOfPages) {
-      newPage = 1;
+      newPage = numOfPages;
     };
     changePage(newPage);
   };
@@ -30,7 +30,8 @@ const PageBtnContainer = () => {
   return (
     <Wrapper>
       <button className="prev-btn" onClick={prevPage}>
-        <HiChevronDoubleLeft /> prev
+        <HiChevronDoubleLeft />
+        prev
       </button>
 
       <div className="btn-container">
@@ -41,6 +42,7 @@ const PageBtnContainer = () => {
               key={pageNum}
               className={`${pageNum === page}` ? "pageBtn active" : "pageBtn"}
               onClick={() => changePage(pageNum)}
+              style={{ margin: "0.5rem" }}
             >
               {pageNum}
             </button>
@@ -50,6 +52,7 @@ const PageBtnContainer = () => {
 
       <button className="next-btn" onClick={nextPage}>
         next
+        <HiChevronDoubleRight />
       </button>
     </Wrapper>
   );
