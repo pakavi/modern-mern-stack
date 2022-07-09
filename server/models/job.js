@@ -28,7 +28,7 @@ const JobSchema = Schema(
     jobLocation: {
       type: String,
       required: [true, "Please provide job location value"],
-      default: "my city",
+      default: "Unknown",
     },
     createdBy: {
       type: mongoose.Types.ObjectId,

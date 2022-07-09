@@ -11,38 +11,24 @@ import { BadRequestError, NotFoundError } from "../errors/index.js";
 const getAllJobs = async (req, res) => {
   const { status, jobType, sort, search } = req.query;
 
+  
   const queryObject = { createdBy: req.user.userId };
 
-  
-  if(status && status !== "all") {
-    queryObject.status = status;
-  };
+  if (status && status !== "all") queryObject.status = status;
 
-  if(jobType && jobType !== "all") {
-    queryObject.jobType = jobType;
-  };
+  if (jobType && jobType !== "all") queryObject.jobType = jobType;
 
-  if(search) {
-    queryObject.position = { $regex: search, $options: "i" };
-  }
+  if (search) queryObject.position = { $regex: search, $options: "i" };
 
   let result = Job.find(queryObject);
 
-  if(sort === "latest") {
-    result = result.sort("-createdAt");
-  }
+  if (sort === "latest") result = result.sort("-createdAt");
 
-  if(sort === "oldest") {
-    result = result.sort("createdAt");
-  }
+  if (sort === "oldest") result = result.sort("createdAt");
 
-  if(sort === "a-z") {
-    result = result.sort("position");
-  }
+  if (sort === "a-z") result = result.sort("position");
 
-  if(sort === "z-a") {
-    result = result.sort("-position");
-  }
+  if (sort === "z-a") result = result.sort("-position");
 
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
@@ -136,10 +122,7 @@ const showStats = async (req, res) => {
 
   monthlyApplications = monthlyApplications
     .map((item) => {
-      const {
-        _id: { year, month },
-        count,
-      } = item;
+      const { _id: { year, month }, count } = item;
       const date = moment()
         .month(month - 1)
         .year(year - 1)

@@ -20,7 +20,7 @@ import errorHandler from "./middleware/errorHandler.js";
 import authenticateUser from "./middleware/auth.js";
 import notFound from "./middleware/notFound.js";
 
-import populateDB from "./data/data.js";
+// import populateDB from "./data/data.js";
 
 
 dotenv.config();
@@ -49,7 +49,7 @@ app.use(notFound);
 app.use(errorHandler);
 
 
-populateDB();
+// populateDB();
 
 const connect = async () => {
   const url = process.env.MONGO_URL;
