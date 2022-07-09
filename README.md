@@ -1,6 +1,9 @@
 # Modern MERN Stack
 
 Deploy ready ✅
+<br />
+<br />
+Fully tested with postman ✅
 
 ## Features
 - CRUD operations
