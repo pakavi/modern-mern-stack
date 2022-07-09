@@ -1,6 +1,6 @@
 # Modern MERN Stack
 
-work in progress ☑️
+Deploy ready ✅
 
 ## Features
 - CRUD operations
@@ -8,8 +8,9 @@ work in progress ☑️
 - Error handling
 - Middlewares
 - Permissions
-- Context
+- Pagination
 - Routing
+- Context
 - JWT
 
 ## Environment Variables
@@ -23,6 +24,8 @@ You need to add these to **.env** file
 `JWT_SECRET`
 
 `JWT_LIFETIME`
+
+`NODE_ENV`
 
 ## Run Locally
 
