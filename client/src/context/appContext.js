@@ -44,6 +44,7 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+
   const authFetch = axios.create({ baseURL: "/api/v1" });
 
   authFetch.interceptors.request.use(
@@ -65,6 +66,7 @@ const AppProvider = ({ children }) => {
       return Promise.reject(err);
     }
   );
+
 
   const displayAlert = () => {
     dispatch({ type: DISPLAY_ALERT });
@@ -91,10 +93,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type: SETUP_USER_BEGIN });
 
     try {
-      const { data } = await axios.post(
-        `/api/v1/auth/${endpoint}`,
-        currentUser
-      );
+      const { data } = await axios.post( `/api/v1/auth/${endpoint}`, currentUser);
       const { user, token, location } = data;
 
       dispatch({
@@ -163,6 +162,7 @@ const AppProvider = ({ children }) => {
     }
     clearAlert();
   };
+
 
   const createJob = async () => {
     dispatch({ type: CREATE_JOB_BEGIN });

@@ -165,10 +165,7 @@ const reducer = (state, action) => {
   }
 
   if (action.type === CREATE_JOB_BEGIN) {
-    return {
-      ...state,
-      isLoading: true,
-    };
+    return { ...state, isLoading: true };
   }
 
   if (action.type === CREATE_JOB_SUCCESS) {
@@ -208,10 +205,7 @@ const reducer = (state, action) => {
   }
 
   if(action.type === EDIT_JOB_BEGIN) {
-    return {
-      ...state,
-      isLoading: true
-    }
+    return { ...state, isLoading: true }
   }
   if(action.type === EDIT_JOB_SUCCESS) {
     return {
@@ -234,10 +228,7 @@ const reducer = (state, action) => {
   }
 
   if(action.type === DELETE_JOB_BEGIN) {
-    return {
-      ...state,
-      isLoading: true
-    }
+    return { ...state, isLoading: true }
   }
 
 
@@ -267,10 +258,7 @@ const reducer = (state, action) => {
       status: "pending",
     };
 
-    return {
-      ...state,
-      ...initialState,
-    };
+    return { ...state, ...initialState };
   }
 
   if(action.type === CHANGE_PAGE) {
