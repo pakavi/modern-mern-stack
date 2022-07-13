@@ -37,9 +37,9 @@ const StatsContainer = () => {
 
   return (
     <Wrapper>
-      {defaultStats.map((item, index) => {
-        return <StatItem key={index} {...item} />;
-      })}
+      {defaultStats.map((item, index) => (
+        <StatItem key={index} {...item} />
+      ))}
     </Wrapper>
   );
 };
