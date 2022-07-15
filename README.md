@@ -1,6 +1,6 @@
 # Modern MERN Stack
 
-Fully tested with postman ✅
+Modern mern stack with best practices and clean code
 
 ## Features
 - CRUD operations
